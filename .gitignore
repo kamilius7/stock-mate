@@ -29,3 +29,6 @@ dist-ssr
 /playwright/.cache/
 .last-run.json
 .dyad/
+
+# Expo device and development cache
+.expo/
