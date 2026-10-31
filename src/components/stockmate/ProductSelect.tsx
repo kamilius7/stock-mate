@@ -3,7 +3,7 @@ import { ScrollView, View, useWindowDimensions } from 'react-native';
 import { Button, Dialog, Portal, Text, TouchableRipple } from 'react-native-paper';
 import type { Product } from '../../types/models';
 import { Search, StockMateButton } from './ui';
-import { colors, styles } from '../../theme/stockmateTheme';
+import { colors, styles, tokens } from '../../theme/stockmateTheme';
 
 export function ProductSelect({ products, value, onChange }: { products: Product[]; value: string; onChange: (id: string) => void }) {
   const [open, setOpen] = useState(false);
@@ -14,7 +14,7 @@ export function ProductSelect({ products, value, onChange }: { products: Product
   return <View style={{ gap: 8 }}>
     <Text variant="bodyMedium">Product (required)</Text>
     <StockMateButton mode="outlined" icon="chevron-down" onPress={() => setOpen(true)}>{selected?.name ?? 'Choose a product'}</StockMateButton>
-    <Portal><Dialog visible={open} onDismiss={() => setOpen(false)} style={{ backgroundColor: colors.surface, maxWidth: 560, width: '90%', alignSelf: 'center' }}>
+    <Portal><Dialog visible={open} onDismiss={() => setOpen(false)} style={{ backgroundColor: colors.surface, maxWidth: tokens.contentWidth, width: '90%', alignSelf: 'center' }}>
       <Dialog.Title>Choose a product</Dialog.Title>
       <Dialog.Content><Search value={query} onChangeText={setQuery} /></Dialog.Content>
       <Dialog.ScrollArea style={{ maxHeight: Math.min(340, Math.max(100, height - 280)) }}>
