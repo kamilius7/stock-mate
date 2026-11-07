@@ -26,19 +26,19 @@ export function BottomTabBar({ state, descriptors, navigation }: Props) {
     return <TouchableRipple key={route.key} accessibilityRole="tab" accessibilityLabel={label} accessibilityState={{ selected }} onPress={() => {
       const event = navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
       if (!selected && !event.defaultPrevented) navigation.navigate(route.name);
-    }} onLongPress={() => navigation.emit({ type: 'tabLongPress', target: route.key })} style={{ flex: 1, minWidth: 0, borderRadius: 12, marginTop: 20 }} borderless>
+    }} onLongPress={() => navigation.emit({ type: 'tabLongPress', target: route.key })} style={{ flex: 1, minWidth: 0, borderRadius: 12, marginTop: 20 }} borderless rippleColor={`${colors.primary}18`}>
       <View style={{ alignItems: 'center', justifyContent: 'center', paddingHorizontal: 2, paddingVertical: 10, minHeight: 64, gap: 5 }}>
         <Icon name={icons[route.name as keyof typeof icons] ?? 'grid'} color={selected ? colors.primary : colors.muted} size={22} />
         <Text style={{ fontFamily: selected ? fontFamilies.number : fontFamilies.body, fontSize: 12, lineHeight: 18, color: selected ? colors.primary : colors.muted, fontWeight: selected ? '700' : '400', textAlign: 'center' }}>{label}</Text>
       </View>
     </TouchableRipple>;
   }
-  return <View style={{ backgroundColor: colors.background }}>
-    <View style={{ position: 'absolute', top: 20, bottom: 0, left: 0, right: 0, borderTopWidth: 1, borderTopColor: colors.border, backgroundColor: colors.surface }} />
+  return <View style={{ backgroundColor: colors.background, paddingTop: 8 }}>
+    <View style={{ position: 'absolute', top: 8, bottom: 0, left: 10, right: 10, borderRadius: 24, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surface }} />
     <View style={{ flexDirection: 'row', alignItems: 'flex-start', width: '100%', maxWidth: tokens.contentWidth, alignSelf: 'center', paddingHorizontal: 6, paddingBottom: Math.max(8, insets.bottom) }}>
       {state.routes.slice(0, 2).map((route, index) => tab(route, index))}
       <View style={{ flex: 1, alignItems: 'center', paddingHorizontal: 2 }}>
-        <TouchableRipple accessibilityRole="button" accessibilityLabel="Sell. Start a new sale" onPress={sell} borderless style={{ width: 64, minHeight: 64, borderRadius: 32, backgroundColor: colors.accent, shadowColor: colors.onAccent, shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.22, shadowRadius: 5, elevation: 5 }}>
+        <TouchableRipple accessibilityRole="button" accessibilityLabel="Sell. Start a new sale" onPress={sell} borderless style={{ width: 64, minHeight: 64, borderRadius: 32, backgroundColor: colors.accent, shadowColor: colors.onAccent, shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.22, shadowRadius: 5, elevation: 5 }} rippleColor={`${colors.onAccent}28`}>
           <View style={{ minHeight: 64, paddingVertical: 9, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center', gap: 3 }}><Icon name="shopping-bag" size={23} color={colors.onAccent} /><Text style={{ color: colors.onAccent, fontFamily: fontFamilies.number, fontSize: 12, lineHeight: 18, textAlign: 'center' }}>Sell</Text></View>
         </TouchableRipple>
       </View>
