@@ -2,11 +2,11 @@ import { MD3LightTheme, configureFonts } from 'react-native-paper';
 import { Platform, StyleSheet } from 'react-native';
 
 export const colors = {
-  background: '#FBF3E4', surface: '#FFFFFF', text: '#1C2826', muted: '#5B6663',
-  primary: '#0B5D4B', onPrimary: '#FFFFFF', accent: '#F5B820', onAccent: '#2A1D00',
-  alert: '#C4452D', info: '#2B3F9E', infoBg: '#EDF0FB',
-  sage: '#E5EEE7', warning: '#C4452D', warningBg: '#FFF5F1',
-  error: '#C4452D', errorBg: '#FFF5F1', border: '#E2D9CC', soft: '#F4EFE6',
+  background: '#F4F7F5', surface: '#FFFFFF', text: '#102A26', muted: '#6B7C78',
+  primary: '#123F36', onPrimary: '#FFFFFF', accent: '#FF765F', onAccent: '#2B1712',
+  alert: '#D95B4A', info: '#4778A8', infoBg: '#EAF2F8',
+  sage: '#E3F0EA', warning: '#D95B4A', warningBg: '#FFF0ED',
+  error: '#D95B4A', errorBg: '#FFF0ED', border: '#DCE8E3', soft: '#EEF4F1',
 };
 export const categoryPalette = {
   Drinks: '#2F73D9', Food: '#E8782A', Household: '#7A4FC4',

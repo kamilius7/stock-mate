@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text, TouchableRipple } from 'react-native-paper';
-import Svg, { Circle, Rect } from 'react-native-svg';
 import { router } from 'expo-router';
 import { categoryColors, colors, fontFamilies } from '../theme/stockmateTheme';
 import { Icon } from '../components/stockmate/ui';
@@ -19,16 +18,14 @@ export const market = StyleSheet.create({
   number: { fontFamily: fontFamilies.number, fontVariant: ['tabular-nums'] },
   row: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   section: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 },
-  panel: { backgroundColor: colors.surface, borderRadius: 12, padding: 12, gap: 10 },
+  panel: { backgroundColor: colors.surface, borderRadius: 20, padding: 16, gap: 10, borderWidth: 1, borderColor: colors.border },
   pill: { borderRadius: 24, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surface },
   action: { minHeight: 48, paddingHorizontal: 14, paddingVertical: 10, flexDirection: 'row', gap: 8, alignItems: 'center', justifyContent: 'center' },
 });
 export function MarketHeader({ children }: { children: React.ReactNode }) {
-  return <View style={{ backgroundColor: colors.primary, borderBottomLeftRadius: 24, borderBottomRightRadius: 24, padding: 20, overflow: 'hidden', gap: 12 }}>
-    <View pointerEvents="none" accessible={false} style={StyleSheet.absoluteFill}><Svg width="100%" height="100%">{Array.from({ length: 48 }, (_, i) => {
-      const x = (i % 8) * 62 + 14; const y = Math.floor(i / 8) * 55 + 12;
-      return <React.Fragment key={i}><Circle cx={x} cy={y} r={18} fill="none" stroke={colors.accent} strokeOpacity={0.14} /><Rect x={x - 5} y={y - 6} width={10} height={12} rx={2} fill="none" stroke="#FFFFFF" strokeOpacity={0.12} /></React.Fragment>;
-    })}</Svg></View>{children}
+  return <View style={{ backgroundColor: colors.primary, borderRadius: 28, margin: 16, marginBottom: 4, padding: 20, overflow: 'hidden', gap: 12 }}>
+    <View pointerEvents="none" accessible={false} style={{ position: 'absolute', right: -38, top: -42, width: 150, height: 150, borderRadius: 100, borderWidth: 24, borderColor: colors.accent, opacity: 0.14 }} />
+    {children}
   </View>;
 }
 export function MarketAction({ label, onPress, filled = false, icon }: { label: string; onPress: () => void; filled?: boolean; icon?: React.ComponentProps<typeof Icon>['name'] }) {
@@ -38,7 +35,7 @@ export function MarketProduct({ product, compact = false }: { product: Product; 
   const tone = categoryColors[product.category] ?? colors.primary;
   const status = stockStatus(product);
   const warning = status !== 'In stock';
-  return <TouchableRipple accessibilityRole="button" accessibilityLabel={`${product.name}, ${money(product.price)}, ${product.quantity} units, ${status}. Open product details.`} onPress={() => router.push(`/inventory/${product.id}`)} borderless style={{ backgroundColor: colors.surface, borderRadius: 12 }}>
+  return <TouchableRipple accessibilityRole="button" accessibilityLabel={`${product.name}, ${money(product.price)}, ${product.quantity} units, ${status}. Open product details.`} onPress={() => router.push(`/inventory/${product.id}`)} borderless style={{ backgroundColor: colors.surface, borderRadius: 20, borderWidth: 1, borderColor: colors.border }}>
     <View style={{ padding: 12, gap: 8 }}><View style={market.row}>
       <View style={{ width: 42, height: 42, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: tone }}><Text style={{ color: '#FFFFFF', fontFamily: fontFamilies.heading, fontSize: 24 }}>{product.name.charAt(0).toUpperCase()}</Text></View>
       <View style={{ flex: 1, minWidth: 0 }}><Text style={[market.label, { fontFamily: fontFamilies.number }]}>{product.name}</Text><Text style={market.small}>{compact ? `${product.quantity} units remaining` : `${money(product.price)} · ${product.category}`}</Text></View>

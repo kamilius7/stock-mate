@@ -17,5 +17,5 @@ function Navigator() {
 export default function RootLayout() {
   const [loaded] = useFonts({ Inter: Inter_400Regular, InterSemiBold: Inter_600SemiBold });
   const [headingsLoaded] = useFonts({ SoraSemiBold: soraFontSource });
-  return <SafeAreaProvider style={{ backgroundColor: colors.background }}><PaperProvider theme={createTheme(loaded, headingsLoaded)}><StatusBar style="dark" /><View style={{ flex: 1, width: '100%', maxWidth: tokens.contentWidth, alignSelf: 'center', backgroundColor: colors.background }}><ShopProvider><Navigator /></ShopProvider></View></PaperProvider></SafeAreaProvider>;
+  return <SafeAreaProvider style={{ backgroundColor: colors.background }}><PaperProvider theme={createTheme(loaded, headingsLoaded)}><StatusBar style="dark" backgroundColor={colors.background} /><View style={{ flex: 1, width: '100%', maxWidth: tokens.contentWidth, alignSelf: 'center', backgroundColor: colors.background }}><ShopProvider><Navigator /></ShopProvider></View></PaperProvider></SafeAreaProvider>;
 }

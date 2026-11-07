@@ -33,8 +33,8 @@ export function BottomTabBar({ state, descriptors, navigation }: Props) {
       </View>
     </TouchableRipple>;
   }
-  return <View style={{ backgroundColor: colors.background }}>
-    <View style={{ position: 'absolute', top: 20, bottom: 0, left: 0, right: 0, borderTopWidth: 1, borderTopColor: colors.border, backgroundColor: colors.surface }} />
+  return <View style={{ backgroundColor: colors.background, paddingTop: 8 }}>
+    <View style={{ position: 'absolute', top: 8, bottom: 0, left: 10, right: 10, borderRadius: 24, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surface }} />
     <View style={{ flexDirection: 'row', alignItems: 'flex-start', width: '100%', maxWidth: tokens.contentWidth, alignSelf: 'center', paddingHorizontal: 6, paddingBottom: Math.max(8, insets.bottom) }}>
       {state.routes.slice(0, 2).map((route, index) => tab(route, index))}
       <View style={{ flex: 1, alignItems: 'center', paddingHorizontal: 2 }}>
