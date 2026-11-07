@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ImageBackground, View } from 'react-native';
 import { Stack } from 'expo-router';
 import { PaperProvider, Snackbar } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -19,5 +19,5 @@ export default function RootLayout() {
   const [loaded] = useFonts({ Inter: Inter_400Regular, InterSemiBold: Inter_600SemiBold });
   const [headingsLoaded] = useFonts({ SoraSemiBold: soraFontSource });
   if (!loaded || !headingsLoaded) return <SafeAreaProvider style={{ backgroundColor: colors.background }}><SkeletonScreen /></SafeAreaProvider>;
-  return <SafeAreaProvider style={{ backgroundColor: colors.background }}><PaperProvider theme={createTheme(loaded, headingsLoaded)}><StatusBar style="dark" backgroundColor={colors.background} /><View style={{ flex: 1, width: '100%', maxWidth: tokens.contentWidth, alignSelf: 'center', backgroundColor: colors.background }}><ShopProvider><Navigator /></ShopProvider></View></PaperProvider></SafeAreaProvider>;
+  return <SafeAreaProvider style={{ backgroundColor: colors.background }}><PaperProvider theme={createTheme(loaded, headingsLoaded)}><StatusBar style="dark" backgroundColor={colors.background} /><ImageBackground source={require('../assets/market-texture.png')} resizeMode="cover" style={{ flex: 1 }} imageStyle={{ opacity: 0.18 }}><View style={{ flex: 1, width: '100%', maxWidth: tokens.contentWidth, alignSelf: 'center', backgroundColor: 'rgba(244, 247, 245, 0.9)' }}><ShopProvider><Navigator /></ShopProvider></View></ImageBackground></PaperProvider></SafeAreaProvider>;
 }
